@@ -1,0 +1,119 @@
+/* style.css */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: #f0f0f3;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.pro {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.6em;
+  margin-left: 5px;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.qr-section, .form-section {
+  flex: 1 1 350px;
+  margin: 10px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1em;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.qr-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.slider {
+  cursor: pointer;
+}
+
+.dark-mode {
+  background: #1e1e1e;
+  color: #f5f5f5;
+}
+
+.dark-mode input, .dark-mode select {
+  background: #2b2b2b;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.dark-mode .card {
+  background: rgba(40, 40, 40, 0.7);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.tips {
+  margin-top: 20px;
+  font-size: 0.95em;
+  color: #555;
+}
