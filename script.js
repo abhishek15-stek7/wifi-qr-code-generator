@@ -1,95 +1,58 @@
-// script.js
-
 let qr;
+function generateQR() {
+  const ssid = document.getElementById('ssid').value;
+  const pass = document.getElementById('password').value;
+  const security = document.getElementById('security').value;
+  const logoInput = document.getElementById('logoInput');
 
-function generateQRCode() {
-  const ssid = document.getElementById("ssid").value;
-  const password = document.getElementById("password").value;
-  const encryption = document.getElementById("encryption").value;
-  const qrColor = document.getElementById("qrColor").value;
-  const bgColor = document.getElementById("bgColor").value;
-  const logoFile = document.getElementById("logoUpload").files[0];
+  if (!ssid) return alert("Please enter SSID");
 
-  let qrData = `WIFI:T:${encryption};S:${ssid};`;
-  if (encryption !== "nopass") qrData += `P:${password};`;
-  qrData += ";";
+  const data = `WIFI:T:${security};S:${ssid};P:${pass};;`;
+  const qrContainer = document.getElementById('qrcode');
+  qrContainer.innerHTML = '';
 
-  const qrCodeDiv = document.getElementById("qrcode");
-  qrCodeDiv.innerHTML = "";
-
-  qr = new QRCode(qrCodeDiv, {
-    text: qrData,
+  qr = new QRCode(qrContainer, {
+    text: data,
     width: 200,
     height: 200,
-    colorDark: qrColor,
-    colorLight: bgColor,
+    colorDark: document.getElementById('qrColor').value,
+    colorLight: document.getElementById('bgColor').value,
     correctLevel: QRCode.CorrectLevel.H
   });
 
-  if (logoFile) {
+  // Show logo if any
+  const logo = document.getElementById('qr-logo');
+  if (logoInput.files[0]) {
     const reader = new FileReader();
-    reader.onload = function (e) {
-      const imgTag = document.querySelector("#qrcode img");
-      if (imgTag) {
-        const overlay = document.createElement("img");
-        overlay.src = e.target.result;
-        overlay.style.position = "absolute";
-        overlay.style.width = "40px";
-        overlay.style.height = "40px";
-        overlay.style.left = "calc(50% - 20px)";
-        overlay.style.top = "calc(50% - 20px)";
-        overlay.style.borderRadius = "10px";
-        overlay.style.zIndex = "10";
-        imgTag.parentNode.style.position = "relative";
-        imgTag.parentNode.appendChild(overlay);
-      }
-    };
-    reader.readAsDataURL(logoFile);
+    reader.onload = () => logo.src = reader.result;
+    reader.readAsDataURL(logoInput.files[0]);
   }
 
-  localStorage.setItem("ssid", ssid);
-  localStorage.setItem("password", password);
-  localStorage.setItem("encryption", encryption);
+  document.getElementById('afterGenerate').classList.remove('hidden');
+  document.getElementById('customizer').classList.remove('hidden');
 }
 
-document.getElementById("downloadBtn").addEventListener("click", () => {
-  const img = document.querySelector("#qrcode img");
-  if (img) {
-    const a = document.createElement("a");
-    a.href = img.src;
-    a.download = "wifi-qr.png";
-    a.click();
-  } else {
-    alert("Please generate QR code first.");
-  }
-});
-
-document.getElementById("exportPDF").addEventListener("click", () => {
-  const qrCard = document.querySelector(".card");
-  html2pdf(qrCard, {
-    margin: 0.5,
-    filename: 'wifi-card.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-  });
-});
-
-document.getElementById("modeSwitch").addEventListener("change", (e) => {
-  document.body.classList.toggle("dark-mode", e.target.checked);
-});
-
-function resetForm() {
-  document.getElementById("ssid").value = "";
-  document.getElementById("password").value = "";
-  document.getElementById("encryption").value = "WPA";
-  document.getElementById("logoUpload").value = "";
-  document.getElementById("qrcode").innerHTML = "";
+function toggleCustomizer() {
+  const box = document.getElementById('customizer');
+  box.classList.toggle('hidden');
 }
 
-window.onload = () => {
-  // Restore saved data
-  document.getElementById("ssid").value = localStorage.getItem("ssid") || "";
-  document.getElementById("password").value = localStorage.getItem("password") || "";
-  document.getElementById("encryption").value = localStorage.getItem("encryption") || "WPA";
-};
+function downloadQR() {
+  const canvas = document.querySelector('#qrcode canvas');
+  const link = document.createElement('a');
+  link.download = 'wifi-qr.png';
+  link.href = canvas.toDataURL();
+  link.click();
+}
+
+function printQR() {
+  const win = window.open();
+  win.document.write('<img src="' + document.querySelector('#qrcode canvas').toDataURL() + '" />');
+  win.print();
+  win.close();
+}
+
+function exportPDF() {
+  const element = document.getElementById('qrcode');
+  html2pdf().from(element).save("wifi-qr.pdf");
+}
