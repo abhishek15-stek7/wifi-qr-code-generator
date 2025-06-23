@@ -6,62 +6,63 @@
   <title>WiFi QR Generator Pro</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="assets/favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="theme-toggle">
-    <label>
-      <input type="checkbox" id="modeSwitch" />
-      <span class="slider"></span> 🌙
-    </label>
-  </div>
 
-  <div class="container">
-    <h1>📶 WiFi QR Generator <span class="pro">PRO</span></h1>
+  <div class="app-container">
+    <div class="card-container">
 
-    <div class="card">
-      <div class="qr-section">
+      <div class="left-preview" id="qr-preview-area">
         <div id="qrcode"></div>
-
-        <div class="qr-controls">
-          <label>QR Color</label>
-          <input type="color" id="qrColor" value="#000000" />
-          <label>Background</label>
-          <input type="color" id="bgColor" value="#ffffff" />
+        <img id="qr-logo" src="" alt="" />
+        <div id="afterGenerate" class="hidden">
+          <button onclick="toggleCustomizer()">🎨 Customize QR</button>
+          <div class="actions">
+            <button onclick="downloadQR()">⬇️ Download QR</button>
+            <button onclick="printQR()">🖨️ Print</button>
+            <button onclick="exportPDF()">📄 Export PDF</button>
+          </div>
         </div>
-
-        <button id="downloadBtn">⬇️ Download QR</button>
-        <button onclick="window.print()">🖨️ Print</button>
-        <button id="exportPDF">📄 Export PDF</button>
       </div>
 
-      <div class="form-section">
-        <label>📶 Network Name (SSID)</label>
-        <input type="text" id="ssid" placeholder="e.g. CafeNet" />
-
-        <label>🔒 Password</label>
-        <input type="text" id="password" placeholder="e.g. abcd1234" />
-
-        <label>🔐 Security</label>
-        <select id="encryption">
+      <div class="right-form">
+        <h1>📶 WiFi QR Generator <span class="pro-badge">PRO</span></h1>
+        <input type="text" id="ssid" placeholder="Network Name (SSID)" />
+        <input type="password" id="password" placeholder="Password" />
+        <select id="security">
           <option value="WPA">WPA/WPA2</option>
           <option value="WEP">WEP</option>
-          <option value="nopass">Open (No Password)</option>
+          <option value="nopass">None</option>
         </select>
 
-        <label>🖼️ Upload Logo (Optional)</label>
-        <input type="file" id="logoUpload" accept="image/*" />
+        <label>📁 Upload Logo (optional)</label>
+        <input type="file" id="logoInput" accept="image/*"/>
 
-        <button onclick="generateQRCode()">🔄 Generate QR</button>
-        <button onclick="resetForm()">🧹 Reset</button>
+        <button id="generateBtn" onclick="generateQR()">⚡ Generate QR</button>
+
+        <div id="customizer" class="hidden">
+          <hr />
+          <label>🎨 QR Color</label>
+          <input type="color" id="qrColor" value="#000000" />
+
+          <label>🌈 Background</label>
+          <input type="color" id="bgColor" value="#ffffff" />
+
+          <label>✨ Special Effects</label>
+          <select id="effect">
+            <option value="none">None</option>
+            <option value="crystalize">Crystalize</option>
+            <option value="liquify">Liquify</option>
+          </select>
+        </div>
       </div>
-    </div>
 
-    <p class="tips">💡 Tip: Use WPA for modern routers and better security.</p>
+    </div>
   </div>
 
-  <script src="qrcode.min.js"></script>
-  <script src="html2pdf.bundle.min.js"></script>
+  <!-- Scripts -->
+  <script src="lib/qrcode.min.js"></script>
+  <script src="lib/html2pdf.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
