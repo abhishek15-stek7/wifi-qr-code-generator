@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WiFi QR Generator Pro</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="theme-toggle">
+    <label>
+      <input type="checkbox" id="modeSwitch" />
+      <span class="slider"></span> 🌙
+    </label>
+  </div>
+
+  <div class="container">
+    <h1>📶 WiFi QR Generator <span class="pro">PRO</span></h1>
+
+    <div class="card">
+      <div class="qr-section">
+        <div id="qrcode"></div>
+
+        <div class="qr-controls">
+          <label>QR Color</label>
+          <input type="color" id="qrColor" value="#000000" />
+          <label>Background</label>
+          <input type="color" id="bgColor" value="#ffffff" />
+        </div>
+
+        <button id="downloadBtn">⬇️ Download QR</button>
+        <button onclick="window.print()">🖨️ Print</button>
+        <button id="exportPDF">📄 Export PDF</button>
+      </div>
+
+      <div class="form-section">
+        <label>📶 Network Name (SSID)</label>
+        <input type="text" id="ssid" placeholder="e.g. CafeNet" />
+
+        <label>🔒 Password</label>
+        <input type="text" id="password" placeholder="e.g. abcd1234" />
+
+        <label>🔐 Security</label>
+        <select id="encryption">
+          <option value="WPA">WPA/WPA2</option>
+          <option value="WEP">WEP</option>
+          <option value="nopass">Open (No Password)</option>
+        </select>
+
+        <label>🖼️ Upload Logo (Optional)</label>
+        <input type="file" id="logoUpload" accept="image/*" />
+
+        <button onclick="generateQRCode()">🔄 Generate QR</button>
+        <button onclick="resetForm()">🧹 Reset</button>
+      </div>
+    </div>
+
+    <p class="tips">💡 Tip: Use WPA for modern routers and better security.</p>
+  </div>
+
+  <script src="qrcode.min.js"></script>
+  <script src="html2pdf.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
