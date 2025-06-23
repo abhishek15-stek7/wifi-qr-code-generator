@@ -21,7 +21,7 @@ A modern, mobile-responsive, customizable Wi-Fi QR Code generator. Built with pu
 
 ## 🖥️ Demo
 
-Live Site: [https://your-username.github.io/wifi-qr-generator/](https://abhishek15-stek7.github.io/wifi-qr-generator/
+Live Site: [https://your-username.github.io/wifi-qr-generator/](https://abhishek15-stek7.github.io/wifi-qr-generator/)
 ))
 
 ---
