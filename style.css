@@ -1,92 +1,92 @@
 body {
   margin: 0;
-  background: #111;
-  color: #fff;
+  background: #000;
   font-family: 'Segoe UI', sans-serif;
+  color: white;
 }
 
-.app-container {
+.outer-container {
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  align-items: center;
+  padding: 40px;
 }
 
-.card-container {
+.main-card {
   display: flex;
-  background: #1e1e1e;
+  background: #1a1a1a;
   border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 0 20px #000;
-  max-width: 1000px;
+  box-shadow: 0 0 30px #000;
+  overflow: hidden;
+  max-width: 1200px;
   width: 100%;
 }
 
 .left-preview {
+  background: #111;
   flex: 1;
-  background: #2b2b2b;
-  border-radius: 12px;
-  margin-right: 2rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 30px;
+  text-align: center;
+  border-right: 1px solid #444;
+  position: relative;
 }
 
 #qrcode {
-  margin: 20px auto;
+  border: 6px solid #333;
+  border-radius: 16px;
+  background: white;
 }
 
-#qr-logo {
-  width: 50px;
-  height: 50px;
+#logo-overlay {
   position: absolute;
-  margin-top: -120px;
+  width: 60px;
+  height: 60px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.actions {
-  margin-top: 10px;
+#post-actions button {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.right-form {
+  flex: 1;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.right-form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 input, select, button {
   padding: 10px;
-  font-size: 16px;
   border: none;
   border-radius: 8px;
-  outline: none;
-}
-
-input[type="color"] {
-  padding: 0;
-  height: 40px;
+  font-size: 16px;
 }
 
 button {
-  background: #007bff;
+  background: #28a745;
   color: white;
   cursor: pointer;
-  transition: 0.3s;
-}
-button:hover {
-  background: #0056b3;
+  transition: 0.2s;
 }
 
-.pro-badge {
-  background: red;
-  color: white;
+button:hover {
+  background: #218838;
+}
+
+.pro {
+  background: #e91e63;
   padding: 2px 6px;
-  border-radius: 6px;
+  border-radius: 5px;
   font-size: 12px;
-  margin-left: 5px;
 }
 
 .hidden {
